@@ -7,34 +7,20 @@ window.onload = function() {
 	core.fps = 15;
 	core.onload = function() {
 
-/*
-		var Bear = Class.create(Sprite, {
-			initialize: function(x,y) {
-				sprite.call(this,32,32);
-				this.x = x;
-				this.y = y;
-				this.image = core.assets[`chara1.png`];
-				this.on(`enterframe`, function(){
-					this.x += 5;
-				});
-			    core.rootScene.addChild(this);
-*/
-
-			var Bear = Class.create(Sprite,{
-				initialize: function(x, y) {
-					Sprite.call(this, 32, 32);
-					this.x = x;
-					this.y = y;
-					this.image = core.assets[`chara1.png`];
-					this.on(`enterframe`, function(){
-						this.x += 2;
-					});
-					core.rootScene.addChild(this);
-				}
-			});
+		var bear = new Sprite(32, 32);
+		bear.image = core.assets[`chara1.png`];
+		bear.x = 0;
+		bear.y = 0;
 			
-			var bear = new Bear(0, 100);
+		bear.addEventListener(`enterframe`, function(){
+			if (core.input.left) this.x -= 5;
+			if (core.input.right) this.x += 5;
+			if (core.input.up) this.y -= 5;
+			if (core.input.down) this.y += 5;
+	});
 
-	};
+		core.rootScene.addChild(bear);
+	}
 	core.start();
+		
 };
