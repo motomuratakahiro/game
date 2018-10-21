@@ -2,7 +2,7 @@ enchant();
 
 window.onload = function() {
 
-	var core = new Core(320,320);
+	var core = new Core(320,321);
 	core.preload(`pug1.png`);
 	core.preload(`chara1.png`);
 
