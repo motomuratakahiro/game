@@ -2,15 +2,32 @@ enchant();
 
 window.onload = function() {
 
-	var core = new Core(320,321);
+	var core = new Core(320,320);
 	core.preload(`pug1.png`);
 	core.preload(`chara1.png`);
-
-	var BGM1 = Sound.load("./music/Lobotomy corp OST - 2nd warning.mp3");
+	core.preload(`pug2.png`);
+	core.preload(`dots.png`);
+	core.preload(`dots2.png`);
+	core.preload(`無題9.png`);
+	core.preload(`背景1.png`)
+	core.preload(`背景2.png`)
+	core.preload(`背景4.png`)
+	//var BGM1 = Sound.load("./music/Lobotomy corp OST - 2nd warning.mp3");
+	var BGM1 = Sound.load("./music/14.wav");
 	
 
 	core.onload = function() {
 
+		var bg = new Sprite(960,320);
+		bg.image = core.assets[`背景4.png`];
+		core.rootScene.addChild(bg);
+
+		/*var bg2 = new Sprite(320,320);
+		bg.image = core.assets[`背景2.png`];
+		bg2.x =321;
+		bg2.y =321;
+		core.rootScene.addChild(bg2);
+		*/
 
 		function jump(chara,SE){
 				core.se = Sound.load(SE);
@@ -37,7 +54,7 @@ window.onload = function() {
 		// bear.frame = 4;
 
 		//bearを生成
-			var bear = new Bear(32,100,'./SE/boyon1.mp3');
+			var bear = new Bear(32,250,'./SE/boyon1.mp3');
 			console.log(bear.se);
 			console.log(bear.inu);
         bear.addEventListener(`enterframe`,function(){
@@ -62,9 +79,9 @@ bear.addEventListener(Event.TOUCH_START, function(e){
                 console.log("キーを押しました");
             });
 	var enemy = new Sprite(32,32);
-		enemy.image = core.assets[`chara1.png`];
-		enemy.x = 80;
-		enemy.y = 150;
+		enemy.image = core.assets[`dots.png`];
+		enemy.x = 150;
+		enemy.y = 250;
 		enemy.frame = 5;
 //--------------------------------------------------------------------------------
 // タッチしたときジャンプするエネミー
@@ -91,8 +108,8 @@ enemy.addEventListener(Event.TOUCH_START, function(e){
 			Sprite.call(this,32,32);
 			this.x = x;
 			this.y = y;
-			this.image = core.assets[`pug1.png`];
-			this.se = SE;
+			this.image = core.assets[`dots2.png`];
+			this.se = SE;	
 			this.inu = "INU";
 			core.rootScene.addChild(this);
 		}
