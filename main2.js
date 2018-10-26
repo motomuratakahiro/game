@@ -58,8 +58,24 @@ window.onload = function() {
 			console.log(bear.se);
 			console.log(bear.inu);
         bear.addEventListener(`enterframe`,function(){
-        	if (core.input.left) this.x -=5;
-        	if (core.input.right) this.x +=5;
+        	if (core.input.left) 	{
+        		console.log(this.x);
+        		if(this.x<=30){
+        		bg.x+=5	
+        		}
+        		
+        	 this.x -=1;
+        	}
+        	if (core.input.right)
+        	{
+        		console.log(this.x);
+        		if(this.x>=30){
+        		bg.x-=5	
+        		}
+        		
+        	 this.x +=1;
+        	}
+
         	if (core.input.up) {
         	jump(this,'./SE/boyon1.mp3');
         	console.log("キーを押しました");
