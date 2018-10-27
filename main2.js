@@ -3,6 +3,7 @@ enchant();
 window.onload = function() {
 
 	var core = new Core(320,320);
+	core.fps = 15;
 	core.preload(`pug1.png`);
 	core.preload(`chara1.png`);
 	core.preload(`pug2.png`);
@@ -12,6 +13,7 @@ window.onload = function() {
 	core.preload(`背景1.png`)
 	core.preload(`背景2.png`)
 	core.preload(`背景4.png`)
+	core.preload(`sprites.png`)
 	//var BGM1 = Sound.load("./music/Lobotomy corp OST - 2nd warning.mp3");
 	var BGM1 = Sound.load("./music/14.wav");
 	
@@ -64,7 +66,7 @@ window.onload = function() {
         		bg.x+=5	
         		}
         		
-        	 this.x -=1;
+        	 this.x -=5;
         	}
         	if (core.input.right)
         	{
@@ -73,7 +75,7 @@ window.onload = function() {
         		bg.x-=5	
         		}
         		
-        	 this.x +=1;
+        	 this.x +=2;
         	}
 
         	if (core.input.up) {
@@ -95,10 +97,16 @@ bear.addEventListener(Event.TOUCH_START, function(e){
                 console.log("キーを押しました");
             });
 	var enemy = new Sprite(32,32);
-		enemy.image = core.assets[`dots.png`];
+		enemy.image = core.assets[`chara1.png`];
 		enemy.x = 150;
 		enemy.y = 250;
-		enemy.frame = 5;
+		enemy.frame = 0;
+
+		enemy.addEventListener(`enterframe`,function(){
+			this.x +=3;
+			this.frame = this.age % 3;
+			if (this.x > 320) this.x = 0;
+		});
 //--------------------------------------------------------------------------------
 // タッチしたときジャンプするエネミー
 //--------------------------------------------------------------------------------
@@ -124,7 +132,21 @@ enemy.addEventListener(Event.TOUCH_START, function(e){
 			Sprite.call(this,32,32);
 			this.x = x;
 			this.y = y;
-			this.image = core.assets[`dots2.png`];
+			this.image = core.assets[`sprites.png`];
+			this.frame = 0;
+			//アニメ作りたい
+			this.animeWaitMax = 3;		// アニメーションのWait値
+        this.animeWaitCount = 0;	// アニメーションのWait値のカウント
+        this.addEventListener('enterframe', function() {
+            this.x += 3;
+            this.frame = this.age % 3;
+            if (this.animeWaitCount >= this.animeWaitMax) {
+            	this.animeWaitCount = 0;
+            	this.frame++;
+            } else {
+            	this.animeWaitCount++;
+            }
+        });
 			this.se = SE;	
 			this.inu = "INU";
 			core.rootScene.addChild(this);
