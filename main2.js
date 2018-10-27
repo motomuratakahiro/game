@@ -138,7 +138,7 @@ enemy.addEventListener(Event.TOUCH_START, function(e){
 			this.animeWaitMax = 3;		// アニメーションのWait値
         this.animeWaitCount = 0;	// アニメーションのWait値のカウント
         this.addEventListener('enterframe', function() {
-            this.x += 3;
+            
             this.frame = this.age % 3;
             if (this.animeWaitCount >= this.animeWaitMax) {
             	this.animeWaitCount = 0;
