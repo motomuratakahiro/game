@@ -2,7 +2,7 @@ enchant();
 
 window.onload = function() {
 
-	var core = new Core(320,320);
+	var core = new Core(600,600);
 	core.fps = 15;
 	core.preload(`pug1.png`);
 	core.preload(`chara1.png`);
@@ -14,6 +14,7 @@ window.onload = function() {
 	core.preload(`背景2.png`)
 	core.preload(`背景4.png`)
 	core.preload(`sprites.png`)
+	core.preload(`deka.png`)
 	//var BGM1 = Sound.load("./music/Lobotomy corp OST - 2nd warning.mp3");
 	var BGM1 = Sound.load("./music/14.wav");
 	
@@ -96,8 +97,9 @@ bear.addEventListener(Event.TOUCH_START, function(e){
                 jump(bear,bear.se);
                 console.log("キーを押しました");
             });
+//enemyを作る
 	var enemy = new Sprite(32,32);
-		enemy.image = core.assets[`chara1.png`];
+		enemy.image = core.assets[`dots2.png`];
 		enemy.x = 150;
 		enemy.y = 250;
 		enemy.frame = 0;
@@ -107,6 +109,20 @@ bear.addEventListener(Event.TOUCH_START, function(e){
 			this.frame = this.age % 3;
 			if (this.x > 320) this.x = 0;
 		});
+		//でかい犬増やす
+	var enemy2 = new Sprite(320,320);
+		enemy2.image = core.assets[`deka.png`];
+		enemy2.x = 150;
+		enemy2.y = 320;
+		enemy2.frame = 0;
+
+		enemy2.addEventListener(`enterframe`,function(){
+			this.x +=3;
+			
+
+			if (this.x > 320) this.x = 0;
+		});
+	
 //--------------------------------------------------------------------------------
 // タッチしたときジャンプするエネミー
 //--------------------------------------------------------------------------------
@@ -118,10 +134,13 @@ enemy.addEventListener(Event.TOUCH_START, function(e){
 		core.rootScene.addChild(label);
 		core.rootScene.addChild(bear);
 		core.rootScene.addChild(enemy);
+		core.rootScene.addChild(enemy2);
 
 	}
-	// ゲーム中に繰り返しBGMを演奏する
+	
+// ゲーム中に繰り返しBGMを演奏する
 	core.rootScene.addEventListener(Event.ENTER_FRAME, function(){
+
 	BGM1.play();
 	});
 	//===================================================
