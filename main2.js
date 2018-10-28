@@ -13,7 +13,7 @@ window.onload = function() {
 	core.preload(`背景1.png`)
 	core.preload(`背景2.png`)
 	core.preload(`背景4.png`)
-	core.preload(`sprites.png`)
+	core.preload(`plist.png`)
 	core.preload(`deka.png`)
 	//var BGM1 = Sound.load("./music/Lobotomy corp OST - 2nd warning.mp3");
 	var BGM1 = Sound.load("./music/14.wav");
@@ -150,14 +150,14 @@ enemy.addEventListener(Event.TOUCH_START, function(e){
 			Sprite.call(this,32,32);
 			this.x = x;
 			this.y = y;
-			this.image = core.assets[`sprites.png`];
+			this.image = core.assets[`plist.png`];
 			this.frame = 0;
 			//アニメ作りたい
-			this.animeWaitMax = 7000;		// アニメーションのWait値
+			this.animeWaitMax = 5;		// アニメーションのWait値
         this.animeWaitCount = 0;	// アニメーションのWait値のカウント
         this.addEventListener('enterframe', function() {
             
-            this.frame = this.age % 3;
+            //this.frame = this.age % 3;
             if (this.animeWaitCount >= this.animeWaitMax) {
             	this.animeWaitCount = 0;
             	this.frame++;
