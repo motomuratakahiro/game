@@ -2,8 +2,8 @@ enchant();
 
 window.onload = function() {
 
-	var core = new Core(600,600);
-	core.fps = 15;
+	var core = new Core(320,320);
+	core.fps = 30;
 	core.preload(`pug1.png`);
 	core.preload(`chara1.png`);
 	core.preload(`pug2.png`);
@@ -62,7 +62,6 @@ window.onload = function() {
 			console.log(bear.inu);
         bear.addEventListener(`enterframe`,function(){
         	if (core.input.left) 	{
-        		console.log(this.x);
         		if(this.x<=30){
         		bg.x+=5	
         		}
@@ -71,7 +70,7 @@ window.onload = function() {
         	}
         	if (core.input.right)
         	{
-        		console.log(this.x);
+        		
         		if(this.x>=30){
         		bg.x-=5	
         		}
@@ -113,7 +112,7 @@ bear.addEventListener(Event.TOUCH_START, function(e){
 	var enemy2 = new Sprite(320,320);
 		enemy2.image = core.assets[`deka.png`];
 		enemy2.x = 150;
-		enemy2.y = 320;
+		enemy2.y = 300;
 		enemy2.frame = 0;
 
 		enemy2.addEventListener(`enterframe`,function(){
@@ -154,7 +153,7 @@ enemy.addEventListener(Event.TOUCH_START, function(e){
 			this.image = core.assets[`sprites.png`];
 			this.frame = 0;
 			//アニメ作りたい
-			this.animeWaitMax = 3;		// アニメーションのWait値
+			this.animeWaitMax = 7000;		// アニメーションのWait値
         this.animeWaitCount = 0;	// アニメーションのWait値のカウント
         this.addEventListener('enterframe', function() {
             
